@@ -605,6 +605,11 @@ p{color:var(--txt2)}
     }
 
 }
+@media (max-width:768px){
+    .mission-grid{
+        grid-template-columns:1fr !important;
+    }
+}
 </style>
 </head>
 <body>
@@ -1341,7 +1346,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTmModal()});
       <h2 class="rev d1">Vision, Mission &amp; Values</h2>
       <p class="rev d2" style="margin-top:12px">The principles that guide every system we build and every client we serve.</p>
     </div>
-    <div class="cert-grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="cert-grid mission-grid" style="grid-template-columns:repeat(3,1fr)">
       <div class="cert-card rev" style="text-align:left;padding:28px">
         <div class="cert-badge cb-iso" style="margin:0 0 16px;font-size:1.4rem">🎯</div>
         <div class="cert-code" style="font-size:1rem;margin-bottom:10px">Vision</div>
