@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-/* ===== TOKENS ===== */ 
+/* ===== TOKENS ===== */
 :root {
   --bg: #ffffff; --bg2: #f8fafc; --bg3: #f1f5f9;
   --txt: #0c1a2e; --txt2: #3d5166; --txt3: #8fa3b8;
@@ -135,6 +135,38 @@ p{color:var(--txt2)}
 .nav-links{display:flex;align-items:center;gap:2px}
 .nav-link{padding:8px 13px;border-radius:var(--r1);font-size:.875rem;font-weight:500;color:var(--txt2);transition:color .2s,background .2s}
 .nav-link:hover{color:var(--txt);background:var(--bg3)}
+/* ===== DROPDOWN ===== */
+.nav-item{position:relative}
+.nav-item.has-dropdown .nav-link{display:inline-flex;align-items:center;gap:5px}
+.nav-item.has-dropdown .nav-link .dd-arrow{width:14px;height:14px;opacity:.55;transition:transform .22s var(--ease)}
+.nav-item.has-dropdown:hover .nav-link .dd-arrow,.nav-item.has-dropdown.open .nav-link .dd-arrow{transform:rotate(180deg);opacity:.85}
+.dd-panel{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-4px);min-width:320px;background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r3);box-shadow:var(--sh3);padding:8px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s var(--ease),transform .18s var(--ease);z-index:500}
+.nav-item.has-dropdown:hover .dd-panel,.nav-item.has-dropdown.open .dd-panel{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.dd-panel::before{content:'';position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:10px;height:10px;background:var(--bg);border-left:1px solid var(--bdr);border-top:1px solid var(--bdr);transform:translateX(-50%) rotate(45deg)}
+.dd-section{padding:4px 4px 2px}
+.dd-section-label{font-size:.67rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--txt3);padding:6px 10px 4px;margin-bottom:2px}
+.dd-row{display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:var(--r2);cursor:pointer;transition:background .15s}
+.dd-row:hover{background:var(--bg2)}
+.dd-row:hover .dd-icon{border-color:var(--blue)}
+.dd-icon{width:34px;height:34px;border-radius:10px;border:1px solid var(--bdr);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:border-color .15s}
+.dd-text{}
+.dd-title{font-size:.86rem;font-weight:600;color:var(--txt);line-height:1.25;margin-bottom:2px}
+.dd-desc{font-size:.75rem;color:var(--txt3);line-height:1.4}
+.dd-divider{height:1px;background:var(--bdr);margin:4px 0}
+.dd-footer{padding:6px 4px 4px}
+.dd-footer-link{display:flex;align-items:center;justify-content:space-between;padding:9px 10px;border-radius:var(--r2);font-size:.83rem;font-weight:500;color:var(--blue);transition:background .15s}
+.dd-footer-link:hover{background:var(--ba)}
+.dd-footer-link svg{opacity:.7}
+/* wide panel for solutions */
+.dd-panel-wide{min-width:520px}
+.dd-cols{display:grid;grid-template-columns:1fr 1fr;gap:0}
+/* mobile dropdown */
+.mob-dd-section{margin-top:8px}
+.mob-dd-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);padding:4px 16px 6px}
+.mob-dd-row{display:flex;align-items:center;gap:9px;padding:10px 16px;border-radius:var(--r2);font-size:.92rem;font-weight:500;color:var(--txt2);transition:all .2s}
+.mob-dd-row:hover{background:var(--bg3);color:var(--txt)}
+.mob-dd-icon{width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.mob-dd-sep{height:1px;background:var(--bdr);margin:8px 0}
 .nav-actions{display:flex;align-items:center;gap:8px}
 .theme-btn{width:36px;height:36px;border-radius:var(--r1);background:var(--bg3);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--txt2);transition:all .2s}
 .theme-btn:hover{color:var(--txt);border-color:var(--txt3)}
@@ -599,8 +631,99 @@ p{color:var(--txt2)}
 </a>
       <div class="nav-links">
         <a href="#" class="nav-link" onclick="goPage('home');return false;">Home</a>
-        <a href="#" class="nav-link" onclick="goPage('solutions');return false;">Solutions</a>
-        <a href="#" class="nav-link" onclick="goPage('casestudies');return false;">Case Studies</a>
+
+        <!-- Solutions dropdown -->
+        <div class="nav-item has-dropdown">
+          <a href="#" class="nav-link" onclick="goPage('solutions');return false;">
+            Solutions
+            <svg class="dd-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dd-panel dd-panel-wide">
+            <div class="dd-section">
+              <div class="dd-section-label">Healthcare IT</div>
+              <div class="dd-cols">
+                <a href="#" class="dd-row" onclick="goPage('solutions');return false;">
+                  <div class="dd-icon">⚕</div>
+                  <div class="dd-text"><div class="dd-title">Divine HIS</div><div class="dd-desc">Complete hospital information system — OPD, IPD, billing, pharmacy</div></div>
+                </a>
+                <a href="#" class="dd-row" onclick="goPage('solutions');return false;">
+                  <div class="dd-icon">🔬</div>
+                  <div class="dd-text"><div class="dd-title">Laboratory (LIMS)</div><div class="dd-desc">Sample tracking, result management & analyzer interfacing</div></div>
+                </a>
+                <a href="#" class="dd-row" onclick="goPage('solutions');return false;">
+                  <div class="dd-icon">🩻</div>
+                  <div class="dd-text"><div class="dd-title">Radiology (RIS / PACS)</div><div class="dd-desc">DICOM-compliant radiology workflow with teleradiology</div></div>
+                </a>
+                <a href="#" class="dd-row" onclick="goPage('solutions');return false;">
+                  <div class="dd-icon">📋</div>
+                  <div class="dd-text"><div class="dd-title">EMR</div><div class="dd-desc">Structured clinical records with FHIR &amp; ABHA integration</div></div>
+                </a>
+              </div>
+            </div>
+            <div class="dd-divider"></div>
+            <div class="dd-section">
+              <div class="dd-section-label">Enterprise &amp; Infrastructure</div>
+              <div class="dd-cols">
+                <a href="#" class="dd-row" onclick="goPage('solutions');return false;">
+                  <div class="dd-icon">📦</div>
+                  <div class="dd-text"><div class="dd-title">Enterprise ERP</div><div class="dd-desc">Finance, procurement, inventory &amp; GST compliance</div></div>
+                </a>
+                <a href="#" class="dd-row" onclick="goPage('solutions');return false;">
+                  <div class="dd-icon">👥</div>
+                  <div class="dd-text"><div class="dd-title">HRMS &amp; Payroll</div><div class="dd-desc">Full HR lifecycle with PF, ESIC &amp; statutory compliance</div></div>
+                </a>
+                <a href="#" class="dd-row" onclick="goPage('solutions');return false;">
+                  <div class="dd-icon">🌐</div>
+                  <div class="dd-text"><div class="dd-title">Cisco Networking</div><div class="dd-desc">Routing, switching, Wi-Fi &amp; MPLS / SD-WAN</div></div>
+                </a>
+                <a href="#" class="dd-row" onclick="goPage('solutions');return false;">
+                  <div class="dd-icon">🛡</div>
+                  <div class="dd-text"><div class="dd-title">STQC Surveillance</div><div class="dd-desc">MeitY-compliant CCTV, Fortinet security &amp; access control</div></div>
+                </a>
+              </div>
+            </div>
+            <div class="dd-divider"></div>
+            <div class="dd-footer">
+              <a href="#" class="dd-footer-link" onclick="goPage('solutions');return false;">
+                View all solutions
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Studies dropdown -->
+        <div class="nav-item has-dropdown">
+          <a href="#" class="nav-link" onclick="goPage('casestudies');return false;">
+            Case Studies
+            <svg class="dd-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="dd-panel">
+            <div class="dd-section">
+              <div class="dd-section-label">By Sector</div>
+              <a href="#" class="dd-row" onclick="goPage('casestudies');return false;">
+                <div class="dd-icon">🏥</div>
+                <div class="dd-text"><div class="dd-title">Healthcare &amp; Hospitals</div><div class="dd-desc">Divine HIS deployment — 78% billing time reduction</div></div>
+              </a>
+              <a href="#" class="dd-row" onclick="goPage('casestudies');return false;">
+                <div class="dd-icon">🏭</div>
+                <div class="dd-text"><div class="dd-title">Manufacturing &amp; Enterprise</div><div class="dd-desc">ERP &amp; HRMS consolidation — 90% reconciliation savings</div></div>
+              </a>
+              <a href="#" class="dd-row" onclick="goPage('casestudies');return false;">
+                <div class="dd-icon">🔗</div>
+                <div class="dd-text"><div class="dd-title">Diagnostic Chains</div><div class="dd-desc">7-site MPLS + LIMS — connected in 3 weeks</div></div>
+              </a>
+            </div>
+            <div class="dd-divider"></div>
+            <div class="dd-footer">
+              <a href="#" class="dd-footer-link" onclick="goPage('casestudies');return false;">
+                All case studies
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <a href="#" class="nav-link" onclick="goPage('careers');return false;">Careers</a>
         <a href="#" class="nav-link" onclick="goPage('contact');return false;">Contact</a>
       </div>
@@ -614,8 +737,29 @@ p{color:var(--txt2)}
 </nav>
 <div class="mob-nav" id="mobNav">
   <a href="#" class="mob-link" onclick="goPage('home');closeMob();return false;">Home</a>
-  <a href="#" class="mob-link" onclick="goPage('solutions');closeMob();return false;">Solutions</a>
-  <a href="#" class="mob-link" onclick="goPage('casestudies');closeMob();return false;">Case Studies</a>
+
+  <!-- Mobile: Solutions -->
+  <div class="mob-dd-sep"></div>
+  <div class="mob-dd-label">Solutions</div>
+  <div class="mob-dd-section">
+    <a href="#" class="mob-dd-row" onclick="goPage('solutions');closeMob();return false;"><div class="mob-dd-icon">⚕</div>Divine HIS</a>
+    <a href="#" class="mob-dd-row" onclick="goPage('solutions');closeMob();return false;"><div class="mob-dd-icon">🔬</div>Laboratory (LIMS)</a>
+    <a href="#" class="mob-dd-row" onclick="goPage('solutions');closeMob();return false;"><div class="mob-dd-icon">🩻</div>Radiology (RIS / PACS)</a>
+    <a href="#" class="mob-dd-row" onclick="goPage('solutions');closeMob();return false;"><div class="mob-dd-icon">📦</div>Enterprise ERP &amp; HRMS</a>
+    <a href="#" class="mob-dd-row" onclick="goPage('solutions');closeMob();return false;"><div class="mob-dd-icon">🌐</div>Cisco Networking &amp; Security</a>
+    <a href="#" class="mob-dd-row" onclick="goPage('solutions');closeMob();return false;"><div class="mob-dd-icon">🛡</div>STQC Surveillance</a>
+  </div>
+
+  <!-- Mobile: Case Studies -->
+  <div class="mob-dd-sep"></div>
+  <div class="mob-dd-label">Case Studies</div>
+  <div class="mob-dd-section">
+    <a href="#" class="mob-dd-row" onclick="goPage('casestudies');closeMob();return false;"><div class="mob-dd-icon">🏥</div>Healthcare &amp; Hospitals</a>
+    <a href="#" class="mob-dd-row" onclick="goPage('casestudies');closeMob();return false;"><div class="mob-dd-icon">🏭</div>Manufacturing &amp; Enterprise</a>
+    <a href="#" class="mob-dd-row" onclick="goPage('casestudies');closeMob();return false;"><div class="mob-dd-icon">🔗</div>Diagnostic Chains</a>
+  </div>
+
+  <div class="mob-dd-sep"></div>
   <a href="#" class="mob-link" onclick="goPage('careers');closeMob();return false;">Careers</a>
   <a href="#" class="mob-link" onclick="goPage('contact');closeMob();return false;">Contact</a>
   <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
