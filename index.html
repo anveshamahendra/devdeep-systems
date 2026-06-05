@@ -719,9 +719,7 @@
   </div>
 </div>
 
-<script>
-
-</script>
+<script src="js/script.js"></script>
 
 
 <!-- ===== VISION / MISSION / VALUE ===== -->
@@ -1181,134 +1179,7 @@
 </footer>
 
 <script>
-// ===== LOGO: inject actual uploaded logo =====
-// The user has uploaded the actual Devdeep Systems logo.
-// We use it as the primary image source. The SVG fallback shows if the img fails.
-// In Claude artifacts, uploaded images are passed as base64 via the conversation.
-// We detect if a real logo was provided and use it.
-(function() {
-  // Try to find if a logo image was uploaded to the conversation
-  // The artifact will show the SVG fallback by default since we can't access uploaded binary assets directly
-  // When deployed with actual logo, replace the src below with the correct path or base64.
-  const navLogo = document.getElementById('navLogo');
-  if (navLogo) {
-    // Since we can't load an external URL reliably in the artifact sandbox,
-    // we show the SVG fallback which precisely mirrors the actual logo structure
-    navLogo.style.display = 'none';
-    document.getElementById('navLogoFallback').style.display = 'flex';
-  }
-})();
 
-// ===== THEME =====
-const tt = document.getElementById('themeToggle');
-let th = localStorage.getItem('ds-th') || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
-applyTh(th);
-function applyTh(t) {
-  document.documentElement.setAttribute('data-theme', t);
-  tt.textContent = t === 'dark' ? '☀️' : '🌙';
-  th = t;
-}
-tt.addEventListener('click', () => { const n = th==='dark'?'light':'dark'; applyTh(n); localStorage.setItem('ds-th',n); });
-
-// ===== NAV =====
-const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => {
-  const isHome = document.getElementById('page-home').classList.contains('active');
-  if (window.scrollY > 16) { nav.classList.add('scrolled'); nav.classList.remove('on-hero'); }
-  else if (isHome) { nav.classList.remove('scrolled'); nav.classList.add('on-hero'); }
-}, {passive:true});
-
-// ===== HAMBURGER =====
-const hbtn = document.getElementById('hb');
-const mn = document.getElementById('mobNav');
-hbtn.addEventListener('click', () => { mn.classList.toggle('open'); });
-function closeMob() { mn.classList.remove('open'); }
-
-// ===== PAGE ROUTING =====
-function goPage(id) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.rev').forEach(el=>el.classList.remove('in'));
-  document.getElementById('page-'+id).classList.add('active');
-  window.scrollTo({top:0,behavior:'instant'});
-  const isHome = id === 'home';
-  if (isHome && window.scrollY <= 16) { nav.classList.remove('scrolled'); nav.classList.add('on-hero'); }
-  else { nav.classList.add('scrolled'); nav.classList.remove('on-hero'); }
-  setTimeout(reveal, 80);
-}
-
-// ===== REVEAL =====
-function reveal() {
-  document.querySelectorAll('.rev:not(.in)').forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight - 40) el.classList.add('in');
-  });
-}
-window.addEventListener('scroll', reveal, {passive:true});
-window.addEventListener('load', reveal);
-setTimeout(reveal, 200);
-
-// ===== FORM =====
-function submitCF() {
-  document.getElementById('cf').style.display = 'none';
-  document.getElementById('cfsuccess').classList.add('show');
-}
-function resetCF() {
-  document.getElementById('cf').style.display = 'flex';
-  document.getElementById('cfsuccess').classList.remove('show');
-}
-
-// ===== HERO CANVAS =====
-(function(){
-  const c = document.getElementById('heroCanvas');
-  if (!c) return;
-  const ctx = c.getContext('2d');
-  let w, h, pts;
-  const N = 100;
-  function sz() { w = c.width = innerWidth; h = c.height = innerHeight; }
-  function init() {
-    sz();
-    pts = Array.from({length:N}, () => ({
-      x: Math.random()*w, y: Math.random()*h,
-      vx: (Math.random()-.5)*.28, vy: (Math.random()-.5)*.28,
-      r: Math.random()*1.6+.4, a: Math.random()*.4+.08
-    }));
-  }
-  function draw() {
-    ctx.clearRect(0,0,w,h);
-    for (let i=0;i<pts.length;i++) for (let j=i+1;j<pts.length;j++) {
-      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
-      if (d<130) { ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.strokeStyle=`rgba(0,180,216,${(1-d/130)*.1})`; ctx.lineWidth=.5; ctx.stroke(); }
-    }
-    pts.forEach(p => {
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(34,211,238,${p.a})`; ctx.fill();
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0;
-    });
-    const t=Date.now()*.00022;
-    const gx=w*.5+Math.sin(t)*w*.16, gy=h*.42+Math.cos(t*.75)*h*.12;
-    const g=ctx.createRadialGradient(gx,gy,0,gx,gy,Math.min(w,h)*.5);
-    g.addColorStop(0,'rgba(27,79,138,.08)'); g.addColorStop(.5,'rgba(0,180,216,.04)'); g.addColorStop(1,'transparent');
-    ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
-    if (!matchMedia('(prefers-reduced-motion:reduce)').matches) requestAnimationFrame(draw);
-  }
-  addEventListener('resize', sz, {passive:true});
-  init(); draw();
-})();
-
-// ===== HIS BAR ANIMATION =====
-function animHIS() {
-  const bars = document.querySelectorAll('.his-bar');
-  bars.forEach(b => {
-    const h = parseFloat(b.style.height);
-    b.style.height = '0';
-    setTimeout(() => { b.style.transition='height .8s cubic-bezier(.4,0,.2,1)'; b.style.height = h+'%'; }, 200 + Math.random()*300);
-  });
-}
-// Trigger HIS animation when scrolled into view
-const hisObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) { animHIS(); hisObs.unobserve(e.target); } });
-}, {threshold:.3});
-const hisDash = document.querySelector('.his-dashboard');
-if (hisDash) hisObs.observe(hisDash);
 </script>
 </body>
 </html>
