@@ -602,43 +602,6 @@
 
 <!-- Team CSS -->
 <style>
-.team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-top:48px}
-@media(max-width:1024px){.team-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:700px){.team-grid{grid-template-columns:repeat(2,1fr);gap:16px}}
-@media(max-width:420px){.team-grid{grid-template-columns:1fr 1fr}}
-
-.tm-card{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1.25;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.18);background:var(--bg3)}
-.tm-photo{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
-.tm-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,var(--bg3) 0%,var(--bg2) 100%);transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
-.tm-initials{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px}
-.tm-card:hover .tm-photo,.tm-card:hover .tm-photo-placeholder{transform:scale(1.07)}
-
-/* Overlay slides up on hover */
-.tm-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,16,30,.85) 0%,rgba(7,16,30,.45) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px 18px 18px;transition:all .35s ease}
-.tm-name{font-family:var(--fh);font-size:1rem;font-weight:700;color:#fff;margin-bottom:3px;line-height:1.2}
-.tm-role{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--cyan);margin-bottom:0}
-.tm-bio-peek{font-size:.78rem;color:rgba(255,255,255,.6);margin-top:8px;line-height:1.5;max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .35s ease;opacity:0}
-.tm-card:hover .tm-bio-peek{max-height:80px;opacity:1}
-
-/* + button */
-.tm-plus{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(0,180,216,.85);backdrop-filter:blur(6px);border:none;color:#fff;font-size:1.2rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;z-index:2;opacity:0;transform:scale(.7)}
-.tm-card:hover .tm-plus{opacity:1;transform:scale(1)}
-.tm-plus:hover{background:var(--cyan);transform:scale(1.12) !important}
-
-/* Director strip — wider card */
-
-
-/* Modal */
-.tm-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
-.tm-modal-bg.open{display:flex}
-.tm-modal{background:var(--bg);border-radius:20px;max-width:480px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.5);animation:tmSlideUp .3s ease}
-@keyframes tmSlideUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
-.tm-modal-photo{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.tm-modal-body{padding:24px 28px 28px}
-.tm-modal-name{font-family:var(--fh);font-size:1.3rem;font-weight:800;color:var(--txt);margin-bottom:4px}
-.tm-modal-role{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);margin-bottom:16px}
-.tm-modal-bio{font-size:.9rem;line-height:1.75;color:var(--txt2)}
-.tm-modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);border:none;color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
 </style>
 
 <section class="section" id="home-team" style="background:var(--bg2);border-top:1px solid var(--bdr)">
