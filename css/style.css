@@ -431,8 +431,8 @@ p{color:var(--txt2)}
 
 [data-theme="dark"] .oem-logo-tile {
   background: #ffffff;
+  border-color: rgba(255,255,255,0.15);
 }
-
 /* ===== INFRA VISUAL ===== */
 .infra-diagram{border-radius:var(--r4);overflow:hidden;background:var(--bg3);border:1px solid var(--bdr);padding:32px}
 .infra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
