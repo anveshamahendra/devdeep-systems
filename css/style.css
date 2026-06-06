@@ -429,8 +429,8 @@ p{color:var(--txt2)}
   line-height: 1.2;
 }
 
-[data-theme="dark"] .oem-slider-wrap {
-  filter: invert(1) hue-rotate(180deg);
+[data-theme="dark"] .oem-logo-tile {
+  background: #ffffff;
 }
 
 /* ===== INFRA VISUAL ===== */
