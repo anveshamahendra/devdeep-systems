@@ -429,6 +429,10 @@ p{color:var(--txt2)}
   line-height: 1.2;
 }
 
+[data-theme="dark"] .oem-slider-wrap {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /* ===== INFRA VISUAL ===== */
 .infra-diagram{border-radius:var(--r4);overflow:hidden;background:var(--bg3);border:1px solid var(--bdr);padding:32px}
 .infra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
