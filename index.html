@@ -65,6 +65,10 @@
                 <div class="dd-icon">👥</div>
                 <div class="dd-text"><div class="dd-title">Our Team</div><div class="dd-desc">Meet the people who make it happen</div></div>
               </a>
+              <a href="#home-leadership-speaks" class="dd-row" onclick="goPage('home');setTimeout(()=>{document.getElementById('home-leadership-speaks')?.scrollIntoView({behavior:'smooth',block:'start'})},120);return false;">
+                <div class="dd-icon">🎙️</div>
+                <div class="dd-text"><div class="dd-title">Leadership Speaks</div><div class="dd-desc">Latest insights from our founder & director</div></div>
+              </a>
               <a href="#home-vision" class="dd-row" onclick="goPage('home');setTimeout(()=>{document.getElementById('home-vision')?.scrollIntoView({behavior:'smooth',block:'start'})},120);return false;">
                 <div class="dd-icon">🎯</div>
                 <div class="dd-text"><div class="dd-title">Vision & Mission</div><div class="dd-desc">Our purpose, values and direction</div></div>
@@ -195,6 +199,7 @@
     <a href="#" class="mob-dd-row" onclick="goPage('home');setTimeout(()=>{document.getElementById('home-surveillance')?.scrollIntoView({behavior:'smooth',block:'start'})},120);closeMob();return false;"><div class="mob-dd-icon">🛡</div>Surveillance</a>
     <a href="#" class="mob-dd-row" onclick="goPage('home');setTimeout(()=>{document.getElementById('home-clients')?.scrollIntoView({behavior:'smooth',block:'start'})},120);closeMob();return false;"><div class="mob-dd-icon">🤝</div>Clients</a>
     <a href="#" class="mob-dd-row" onclick="goPage('home');setTimeout(()=>{document.getElementById('home-team')?.scrollIntoView({behavior:'smooth',block:'start'})},120);closeMob();return false;"><div class="mob-dd-icon">👥</div>Team</a>
+    <a href="#" class="mob-dd-row" onclick="goPage('home');setTimeout(()=>{document.getElementById('home-leadership-speaks')?.scrollIntoView({behavior:'smooth',block:'start'})},120);closeMob();return false;"><div class="mob-dd-icon">🎙️</div>Leadership Speaks</a>
     <a href="#" class="mob-dd-row" onclick="goPage('home');setTimeout(()=>{document.getElementById('home-vision')?.scrollIntoView({behavior:'smooth',block:'start'})},120);closeMob();return false;"><div class="mob-dd-icon">🚀</div>Vision</a>
   </div>
 
@@ -577,7 +582,184 @@
     </div>
 </section>
 
-<!-- REVENUE GROWTH -->
+<!-- LEADERSHIP SPEAKS -->
+<section class="section" id="home-leadership-speaks" style="background:var(--bg2);border-top:1px solid var(--bdr)">
+  <div class="container">
+    <div class="slabel rev">Leadership Speaks</div>
+    <h2 class="rev d1" style="margin-bottom:6px">Insights from our Founder & Director</h2>
+    <p class="rev d2" style="margin-top:8px;margin-bottom:36px;max-width:560px">Watch the latest talk by Kuldip Mahendra — on IT strategy, healthcare technology, and building mission-critical systems for the next decade.</p>
+
+    <div id="ls-container" style="display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap">
+
+      <!-- VIDEO COLUMN -->
+      <div id="ls-video-col" style="flex:1 1 340px;min-width:280px">
+        <div id="ls-loading" style="aspect-ratio:16/9;background:var(--bg3);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;border:1px solid var(--bdr)">
+          <span style="color:var(--txt3);font-size:.9rem">Loading latest video…</span>
+        </div>
+        <div id="ls-video-wrap" style="display:none;border-radius:var(--r2);overflow:hidden;border:1px solid var(--bdr);aspect-ratio:16/9;background:#000">
+          <iframe id="ls-iframe" width="100%" height="100%" frameborder="0" allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            style="display:block"></iframe>
+        </div>
+        <div id="ls-video-meta" style="display:none;margin-top:12px">
+          <p id="ls-video-title" style="font-size:.95rem;font-weight:600;color:var(--txt1);line-height:1.4"></p>
+          <p id="ls-video-date" style="font-size:.8rem;color:var(--txt3);margin-top:4px"></p>
+        </div>
+        <div id="ls-error" style="display:none;aspect-ratio:16/9;background:var(--bg3);border-radius:var(--r2);display:none;align-items:center;justify-content:center;border:1px solid var(--bdr);flex-direction:column;gap:10px;padding:24px;text-align:center">
+          <span style="font-size:2rem">📺</span>
+          <p style="font-size:.9rem;color:var(--txt2)">Watch Kuldip Mahendra's latest talks on YouTube</p>
+          <a href="https://www.youtube.com/@CoachKuldipMahendra/featured" target="_blank" class="btn btn-p" style="margin-top:4px">Open Channel</a>
+        </div>
+      </div>
+
+      <!-- TAKEAWAYS COLUMN -->
+      <div id="ls-takeaways-col" style="flex:1 1 260px;min-width:240px">
+        <div id="ls-tk-loading" style="display:flex;flex-direction:column;gap:12px">
+          <div style="height:14px;background:var(--bg3);border-radius:4px;width:60%;animation:ls-pulse 1.4s infinite"></div>
+          <div style="height:14px;background:var(--bg3);border-radius:4px;width:80%;animation:ls-pulse 1.4s infinite .1s"></div>
+          <div style="height:14px;background:var(--bg3);border-radius:4px;width:70%;animation:ls-pulse 1.4s infinite .2s"></div>
+          <div style="height:14px;background:var(--bg3);border-radius:4px;width:75%;animation:ls-pulse 1.4s infinite .3s"></div>
+          <div style="height:14px;background:var(--bg3);border-radius:4px;width:55%;animation:ls-pulse 1.4s infinite .4s"></div>
+        </div>
+        <div id="ls-tk-label" style="display:none;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:14px">Key Takeaways</div>
+        <ul id="ls-tk-list" style="display:none;list-style:none;padding:0;margin:0;display:none;flex-direction:column;gap:12px"></ul>
+        <div id="ls-tk-error" style="display:none;font-size:.88rem;color:var(--txt3);line-height:1.6">
+          Key takeaways couldn't be generated at the moment.<br>
+          <a href="https://www.youtube.com/@CoachKuldipMahendra/featured" target="_blank" style="color:var(--accent);text-decoration:none">Watch on YouTube →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+@keyframes ls-pulse{0%,100%{opacity:.4}50%{opacity:.9}}
+#ls-tk-list{display:flex!important;flex-direction:column;gap:12px}
+#ls-tk-list li{display:flex;gap:10px;align-items:flex-start;font-size:.875rem;color:var(--txt2);line-height:1.55}
+#ls-tk-list li::before{content:"";display:block;flex-shrink:0;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:6px}
+@media(max-width:680px){#ls-container{flex-direction:column}}
+</style>
+<script>
+(function(){
+  var CHANNEL_ID = 'UCwAqyBVqBjp9sSMFZHfMoVw'; // @CoachKuldipMahendra
+  var YT_API_KEY  = 'AIzaSyApD-J-yZvx6q43SRl1wb846tTVZeBZlqE'; // <<< Replace with real key
+
+  function fmtDate(iso){
+    if(!iso)return'';
+    var d=new Date(iso);
+    return d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+  }
+
+  function showError(){
+    document.getElementById('ls-loading').style.display='none';
+    var e=document.getElementById('ls-error');
+    e.style.display='flex';
+    document.getElementById('ls-tk-loading').style.display='none';
+    document.getElementById('ls-tk-error').style.display='block';
+  }
+
+  function renderVideo(videoId, title, publishedAt){
+    document.getElementById('ls-loading').style.display='none';
+    var wrap=document.getElementById('ls-video-wrap');
+    var meta=document.getElementById('ls-video-meta');
+    wrap.style.display='block';
+    meta.style.display='block';
+    document.getElementById('ls-iframe').src='https://www.youtube.com/embed/'+videoId+'?rel=0&modestbranding=1';
+    document.getElementById('ls-video-title').textContent=title||'';
+    document.getElementById('ls-video-date').textContent=publishedAt?'Published '+fmtDate(publishedAt):'';
+    generateTakeaways(videoId, title);
+  }
+
+  function generateTakeaways(videoId, title){
+    // Call Claude API to generate takeaways based on video title
+    // (In production: pass transcript for richer results)
+    fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:400,
+        messages:[{
+          role:'user',
+          content:'Given this YouTube video title by a coach and tech entrepreneur Kuldip Mahendra: "'+title+'"\n\nGenerate exactly 5 concise, insightful key takeaways a viewer would learn from this talk. Respond ONLY with a JSON array of 5 strings, no preamble, no markdown.'
+        }]
+      })
+    })
+    .then(function(r){return r.json();})
+    .then(function(data){
+      var text=(data.content&&data.content[0]&&data.content[0].text)||'';
+      // Strip potential markdown fences
+      text=text.replace(/```json|```/g,'').trim();
+      var items=JSON.parse(text);
+      if(!Array.isArray(items)||items.length===0)throw new Error('bad');
+      document.getElementById('ls-tk-loading').style.display='none';
+      document.getElementById('ls-tk-label').style.display='block';
+      var ul=document.getElementById('ls-tk-list');
+      ul.innerHTML='';
+      ul.style.display='flex';
+      items.forEach(function(t){
+        var li=document.createElement('li');
+        li.textContent=t;
+        ul.appendChild(li);
+      });
+    })
+    .catch(function(){
+      document.getElementById('ls-tk-loading').style.display='none';
+      document.getElementById('ls-tk-error').style.display='block';
+    });
+  }
+
+  function fetchLatestVideo(){
+    if(YT_API_KEY.indexOf('placeholder')>-1){
+      // Demo fallback — works without API key by using oembed trick
+      // Fetch channel's latest via RSS (no key needed)
+      fetch('https://www.youtube.com/feeds/videos.xml?channel_id='+CHANNEL_ID)
+        .then(function(r){return r.text();})
+        .then(function(xml){
+          var parser=new DOMParser();
+          var doc=parser.parseFromString(xml,'text/xml');
+          var entries=doc.querySelectorAll('entry');
+          if(!entries.length)throw new Error('no entries');
+          var first=entries[0];
+          var videoId=first.querySelector('videoId')?first.querySelector('videoId').textContent:
+                       first.querySelector('[name="yt:videoId"]')?first.querySelector('[name="yt:videoId"]').textContent:
+                       (first.querySelector('link')?first.querySelector('link').getAttribute('href').split('v=')[1]:'');
+          var title=first.querySelector('title')?first.querySelector('title').textContent:'Latest Talk';
+          var published=first.querySelector('published')?first.querySelector('published').textContent:'';
+          if(!videoId)throw new Error('no id');
+          renderVideo(videoId,title,published);
+        })
+        .catch(showError);
+      return;
+    }
+    // With real API key — use YouTube Data API v3
+    var url='https://www.googleapis.com/youtube/v3/search?key='+YT_API_KEY
+          +'&channelId='+CHANNEL_ID
+          +'&part=snippet&order=date&maxResults=1&type=video';
+    fetch(url)
+      .then(function(r){return r.json();})
+      .then(function(data){
+        if(!data.items||!data.items.length)throw new Error('empty');
+        var item=data.items[0];
+        var videoId=item.id.videoId;
+        var title=item.snippet.title;
+        var published=item.snippet.publishedAt;
+        renderVideo(videoId,title,published);
+      })
+      .catch(showError);
+  }
+
+  // Trigger once section scrolls into view (lazy load)
+  var section=document.getElementById('home-leadership-speaks');
+  if(!section){fetchLatestVideo();return;}
+  var observer=new IntersectionObserver(function(entries,obs){
+    if(entries[0].isIntersecting){obs.disconnect();fetchLatestVideo();}
+  },{threshold:0.1});
+  observer.observe(section);
+})();
+</script>
+
+
+  <!-- REVENUE GROWTH -->
 <section class="section-sm section-alt" style="border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)">
   <div class="container">
     <div style="max-width:520px;margin-bottom:36px">
