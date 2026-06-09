@@ -719,9 +719,10 @@
     var url='https://www.googleapis.com/youtube/v3/search?key='+YT_API_KEY
           +'&channelId='+CHANNEL_ID
           +'&part=snippet&order=date&maxResults=1&type=video';
-    fetch(url)
-      .then(function(r){return r.json();})
-      .then(function(data){
+fetch(url)
+  .then(function(r){return r.json();})
+  .then(function(data){
+    console.log('YT API response:', JSON.stringify(data));
         if(!data.items||!data.items.length)throw new Error('empty');
         var item=data.items[0];
         var videoId=item.id.videoId;
