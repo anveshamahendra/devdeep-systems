@@ -642,6 +642,7 @@
 (function(){
   var CHANNEL_ID = 'UCwAqyBVqBjp9sSMFZHfMoVw'; // @CoachKuldipMahendra
   var YT_API_KEY  = 'AIzaSyApD-J-yZvx6q43SRl1wb846tTVZeBZlqE'; // <<< Replace with real key
+  var FALLBACK_VIDEO_ID = 'd9nmp7nhjQE'; // paste any video ID from your dad's channel
 
   function fmtDate(iso){
     if(!iso)return'';
@@ -709,28 +710,11 @@
   }
 
   function fetchLatestVideo(){
-    if(YT_API_KEY.indexOf('placeholder')>-1){
-      // Demo fallback — works without API key by using oembed trick
-      // Fetch channel's latest via RSS (no key needed)
-      fetch('https://www.youtube.com/feeds/videos.xml?channel_id='+CHANNEL_ID)
-        .then(function(r){return r.text();})
-        .then(function(xml){
-          var parser=new DOMParser();
-          var doc=parser.parseFromString(xml,'text/xml');
-          var entries=doc.querySelectorAll('entry');
-          if(!entries.length)throw new Error('no entries');
-          var first=entries[0];
-          var videoId=first.querySelector('videoId')?first.querySelector('videoId').textContent:
-                       first.querySelector('[name="yt:videoId"]')?first.querySelector('[name="yt:videoId"]').textContent:
-                       (first.querySelector('link')?first.querySelector('link').getAttribute('href').split('v=')[1]:'');
-          var title=first.querySelector('title')?first.querySelector('title').textContent:'Latest Talk';
-          var published=first.querySelector('published')?first.querySelector('published').textContent:'';
-          if(!videoId)throw new Error('no id');
-          renderVideo(videoId,title,published);
-        })
-        .catch(showError);
-      return;
-    }
+   if(YT_API_KEY.indexOf('placeholder')>-1){
+  // No API key yet — use hardcoded fallback video
+  renderVideo(FALLBACK_VIDEO_ID, "Latest Talk by Kuldip Mahendra", "");
+  return;
+}
     // With real API key — use YouTube Data API v3
     var url='https://www.googleapis.com/youtube/v3/search?key='+YT_API_KEY
           +'&channelId='+CHANNEL_ID
