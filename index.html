@@ -592,7 +592,7 @@
     <div id="ls-container" style="display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap">
 
       <!-- VIDEO COLUMN -->
-      <div id="ls-video-col" style="flex:1 1 340px;min-width:280px">
+      <div id="ls-video-col" style="width:100%;max-width:800px;margin:0 auto">
         <div id="ls-loading" style="aspect-ratio:16/9;background:var(--bg3);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;border:1px solid var(--bdr)">
           <span style="color:var(--txt3);font-size:.9rem">Loading latest video…</span>
         </div>
@@ -612,21 +612,7 @@
         </div>
       </div>
 
-      <!-- TAKEAWAYS COLUMN -->
-      <div id="ls-takeaways-col" style="flex:1 1 260px;min-width:240px">
-        <div id="ls-tk-loading" style="display:flex;flex-direction:column;gap:12px">
-          <div style="height:14px;background:var(--bg3);border-radius:4px;width:60%;animation:ls-pulse 1.4s infinite"></div>
-          <div style="height:14px;background:var(--bg3);border-radius:4px;width:80%;animation:ls-pulse 1.4s infinite .1s"></div>
-          <div style="height:14px;background:var(--bg3);border-radius:4px;width:70%;animation:ls-pulse 1.4s infinite .2s"></div>
-          <div style="height:14px;background:var(--bg3);border-radius:4px;width:75%;animation:ls-pulse 1.4s infinite .3s"></div>
-          <div style="height:14px;background:var(--bg3);border-radius:4px;width:55%;animation:ls-pulse 1.4s infinite .4s"></div>
-        </div>
-        <div id="ls-tk-label" style="display:none;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:14px">Key Takeaways</div>
-        <ul id="ls-tk-list" style="display:none;list-style:none;padding:0;margin:0;display:none;flex-direction:column;gap:12px"></ul>
-        <div id="ls-tk-error" style="display:none;font-size:.88rem;color:var(--txt3);line-height:1.6">
-          Key takeaways couldn't be generated at the moment.<br>
-          <a href="https://www.youtube.com/@CoachKuldipMahendra/featured" target="_blank" style="color:var(--accent);text-decoration:none">Watch on YouTube →</a>
-        </div>
+   
       </div>
     </div>
   </div>
