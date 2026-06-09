@@ -664,7 +664,7 @@
     var meta=document.getElementById('ls-video-meta');
     wrap.style.display='block';
     meta.style.display='block';
-    document.getElementById('ls-iframe').src='https://www.youtube.com/embed/'+videoId+'?rel=0&modestbranding=1';
+   document.getElementById('ls-iframe').src='https://www.youtube.com/embed/'+videoId+'?rel=0&modestbranding=1&autoplay=1&mute=1';
     document.getElementById('ls-video-title').textContent=title||'';
     document.getElementById('ls-video-date').textContent=publishedAt?'Published '+fmtDate(publishedAt):'';
     generateTakeaways(videoId, title);
